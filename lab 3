@@ -1,0 +1,93 @@
+
+
+#include<stdio.h> 
+#define m 3 
+int stack[m]; 
+int top = -1; 
+void push(int item) 
+{ 
+if (top == (m-1)) 
+printf("\n\nStack is Overflow"); 
+else 
+{ 
+stack[++top] = item; 
+} 
+} 
+void pop() 
+{ 
+int ret; 
+if(top == -1) 
+printf("\n\nStack is Underflow"); 
+else 
+{ 
+ret = stack[top--]; 
+printf("\n popped element =  %d",ret); 
+} 
+} 
+void palindrome() 
+{ 
+int flag=0,len=top+1; 
+int i=0,j,k; 
+printf("\n stack elements are ="); 
+for(j=top;j>=0;j--) 
+printf("\n%d",stack[j]); 
+printf("\n The reversed stack elements are = "); 
+for(k=0;k<=top;k++) 
+printf("\n%d",stack[k]); 
+while(top!=-1) 
+{ 
+if(stack[top]!=stack[i]) 
+{ 
+flag=1; 
+break; 
+} 
+top--; 
+i++; 
+} 
+if(flag==0) 
+printf("\nIt is palindrome number\n"); 
+else 
+printf("\nIt is not a palindrome number\n"); 
+top = len-1; 
+} 
+void display() 
+{ 
+int i; 
+printf("\nThe stack conatins = \n"); 
+if(top == -1) 
+printf("\nStack is Empty"); 
+else 
+{ 
+for(i=top; i>=0; i--) 
+printf("\n %d\n", stack[i]); 
+} 
+} 
+void main() 
+{ 
+int ch,item; 
+do 
+{ 
+printf("\n1. push"); 
+printf("\n2. pop"); 
+printf("\n3. palindrome"); 
+printf("\n4. display"); 
+printf("\n5. exit"); 
+printf("\nEnter Your Choice:"); 
+scanf("%d", &ch); 
+switch(ch) 
+{ 
+case 1: printf("\nEnter a element to be pushed: "); 
+scanf("%d", &item); 
+push(item); 
+break; 
+case 2: pop(); 
+break; 
+case 3: palindrome(); 
+break; 
+case 4: display(); 
+break; 
+default: printf("\nInvalid Choice\n"); 
+break; 
+} 
+}while (ch != 5); 
+}
