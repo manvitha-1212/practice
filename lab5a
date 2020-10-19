@@ -1,0 +1,124 @@
+#include<stdio.h>
+#include<ctype.h> 
+#include<math.h> 
+#define MAX 20 
+int stack[MAX], top = -1;
+
+ 
+void 
+push (int item) 
+{
+  
+stack[++top] = item;
+
+} 
+int 
+
+
+pop () 
+{
+  
+return (stack[top--]);
+
+}
+
+
+ 
+ 
+void 
+main () 
+{
+  
+char suffix[50];
+  
+ 
+int i = 0, temp;
+  
+ 
+printf ("\nEnter a valid suffix expression:\n");
+  
+ 
+scanf ("%s", suffix);
+  
+ 
+for (i = 0; suffix[i] != '\0'; i++)
+    
+ 
+    {
+      
+if (isdigit (suffix[i]))
+	
+ 
+push (suffix[i] - '0');
+      
+ 
+switch (suffix[i])
+	
+ 
+	{
+	
+case '+':
+	  
+push (pop () + pop ());
+	  
+ 
+break;
+	
+ 
+case '-':
+	  
+temp = pop ();
+	  
+ 
+push (pop () - temp);
+	  
+ 
+break;
+	
+ 
+case '*':
+	  
+push (pop () * pop ());
+	  
+ 
+break;
+	
+ 
+case '/':
+	  
+temp = pop ();
+	  
+ 
+push (pop () / temp);
+	  
+ 
+break;
+	
+case '%':
+	  
+temp = pop ();
+	  
+ 
+push (pop () % temp);
+	  
+break;
+	
+ 
+case '^':
+	  
+temp = pop ();
+	  
+ 
+push (pow (pop (), temp));
+	  
+ 
+break;
+	
+}
+    
+}
+  printf ("The value of the given expression is %d\n", pop ());
+}
+
+
+ 
