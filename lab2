@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<conio.h>
+char str[100],pat[100],rep[100],ans[100];
+void read()
+{
+    printf(" enter the string: ");
+    gets(str);
+    printf("\n enter the pattern string: ");
+    gets(pat);
+    printf("\n enter the replacement string: ");
+    gets(rep);
+}
+void pat_match()
+{
+    int i,j,c,m,k;
+    int flag=0;
+    i=j=c=m=0;
+    while(str[c]!='\0')
+    {
+        if(str[m]==pat[i])
+        {
+            i++;
+            m++;
+            if(pat[i]=='\0')
+            {
+                printf("\nPAT: %s is found at position: %d",pat,c+1);
+                for(k=0;rep[k]!='\0';k++,j++)
+                ans[j]=rep[k];
+                i=0;
+                c=m;
+                flag=1;
+            }
+        }
+        else
+       {
+         ans[j]=str[c];
+         j++;
+         c++;
+         m=c;
+         i=0;
+       }
+    }
+    ans[j]='\0';
+    if(flag==0)
+    printf("\nPAT: %s is not found in STR: %s",pat,str);
+    else
+    printf("\nThe resulting string is: %s",ans);
+}
+void main()
+{
+    read();
+    pat_match();
+    getch();
+}
