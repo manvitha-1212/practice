@@ -1,0 +1,88 @@
+#include<stdio.h> 
+#include<stdlib.h> 
+#include<conio.h>
+int n,*a; 
+void create(int n) 
+{  
+    int i;  
+    a=(int*)malloc(n*sizeof(int));  
+    if(a==NULL)  
+    {   
+        printf("array not created\n");   
+        exit(0);  
+    }  
+    printf("\n array created successfully");  
+    printf("\n enter array elements");  
+    for(i=0;i<n;i++)   
+    scanf("%d",&a[i]); 
+} 
+void display() 
+{  
+    int i;  
+    for(i=0;i<n;i++)  
+    {   
+        printf("%d\t",a[i]);  
+    } 
+}
+void insert(int ele,int pos) 
+{  
+    int j=n-1;  
+    n++;  
+    a=(int*)realloc(a,n*sizeof(int));  
+    while(j>=pos)  
+    {    
+        a[j+1]=a[j];   
+        j--;  
+    }  
+    a[pos]=ele; 
+} 
+void delet(int pos) 
+{  
+    int j,item;  
+    item=a[pos];
+    printf("the deleted ele is %d\n",item);  
+    for(j=pos;j<n-1;j++)  
+    {   
+        a[j]=a[j+1];  
+    }  
+    n--;  
+    if(n==0)   
+    printf("\n no elements in the array\n"); 
+} 
+void main() 
+{  
+    int ch,ele,pos;  
+    //clrscr();  
+    while(1)  
+    {   
+        printf("\nenter a choice\n 1.create\n 2.display\n 3.insert\n 4.delete\n 5.exit\n");   
+        scanf("%d",&ch);   
+        switch(ch)   
+        {    
+            case 1: printf("enter the size of array\n");     
+            scanf("%d",&n);     
+            create(n);     
+            break;    
+            case 2: display();     
+            break;    
+            case 3: printf("enter the element\n");     
+            scanf("%d",&ele);     
+            label: printf("enter the position (*index starts from 0)\n");     
+            scanf("%d",&pos);     
+            if(pos>=0 &&pos<n)      
+            insert(ele,pos);     
+            else      
+            goto label;     
+            break;    
+            case 4: label2: printf("enter the position(*index starts from 0)\n");     
+            scanf("%d",&pos);     
+            if(pos>=0 && pos<n)      
+            delet(pos);     
+            else      
+            goto label2;     
+            break;    
+            default: free(a);     
+            exit(0);   
+        }  
+    } 
+}
