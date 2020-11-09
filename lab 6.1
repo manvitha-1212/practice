@@ -1,0 +1,98 @@
+#include <stdio.h> 
+#define qmax 4 
+char q[qmax]; 
+int front=0,rear=-1; 
+void insert(); 
+void delete(); 
+void display(); 
+void main() 
+{ 
+ int ch; 
+ printf("\ncircular Queue operations\n"); 
+ printf("1.insert\n2.delete\n3.display\n4.exit\n"); 
+ while(1) 
+ { 
+  printf("\nenter your choice:"); 
+  scanf("%d",&ch); 
+  switch(ch) 
+  { 
+   case 1: insert(); break; 
+   case 2: delete(); break; 
+   case 3: display(); break; 
+   case 4: exit(1); 
+   default: printf("invalid input\n"); 
+   } 
+ } 
+} 
+ 
+void insert() 
+{ 
+ char a; 
+ if((front==0&&rear==qmax-1)||(front>0&&rear==front-1)) 
+  printf("queue is overflow\n"); 
+ else 
+ { 
+  printf("\nenter element to be inserted:"); 
+  scanf("\n%c",&a); 
+  if(rear==qmax-1&&front>0) 
+  { 
+   rear=0; 
+   q[rear]=a; 
+  } 
+  else 
+  { 
+   if((front==0&&rear==-1)||(rear!=front-1)) 
+    q[++rear]=a; 
+  } 
+ printf("%c : element  is  inserted", a); 
+ } 
+ 
+} 
+void delete() 
+{ 
+ char b; 
+ if((front==0)&&(rear==-1)) 
+ { 
+  printf("queue is underflow\n"); 
+  return; 
+ } 
+ if(front==rear) 
+ { 
+  b=q[front]; 
+  rear=-1; 
+  front=0; 
+ } 
+ else if(front==qmax-1) 
+ { 
+  b=q[front]; 
+  front=0; 
+ } 
+ else b=q[front++]; 
+ printf("deleted element is:%c\n", b); 
+} 
+void display() 
+{ 
+ int i,j; 
+ if(front==0&&rear==-1) 
+ { 
+  printf("queue is underflow\n"); 
+  return; 
+ } 
+ if(front>rear) 
+ { 
+  for(i=0;i<=rear;i++) 
+  printf("\t%c",q[i]); 
+  for(j=front;j<=qmax-1;j++) 
+  printf("\t%c",q[j]); 
+  printf("\nrear is at %c\n",q[rear]); 
+  printf("\nfront is at %c\n",q[front]); 
+ } 
+ else 
+ { 
+  for(i=front;i<=rear;i++) 
+   printf("\t%c",q[i]); 
+  printf("\nrear is at %c\n",q[rear]); 
+  printf("\nfront is at %c\n",q[front]); 
+ } 
+ printf("\n"); 
+} 
