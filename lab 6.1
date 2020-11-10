@@ -7,14 +7,14 @@ void delete();
 void display(); 
 void main() 
 { 
- int ch; 
- printf("\ncircular Queue operations\n"); 
+ int c; 
+ printf("\ncircular queue operations\n"); 
  printf("1.insert\n2.delete\n3.display\n4.exit\n"); 
  while(1) 
  { 
   printf("\nenter your choice:"); 
-  scanf("%d",&ch); 
-  switch(ch) 
+  scanf("%d",&c); 
+  switch(c) 
   { 
    case 1: insert(); break; 
    case 2: delete(); break; 
@@ -32,7 +32,7 @@ void insert()
   printf("queue is overflow\n"); 
  else 
  { 
-  printf("\nenter element to be inserted:"); 
+  printf("\nenter element to be inserted:\n"); 
   scanf("\n%c",&a); 
   if(rear==qmax-1&&front>0) 
   { 
@@ -84,15 +84,15 @@ void display()
   printf("\t%c",q[i]); 
   for(j=front;j<=qmax-1;j++) 
   printf("\t%c",q[j]); 
-  printf("\nrear is at %c\n",q[rear]); 
-  printf("\nfront is at %c\n",q[front]); 
+  printf("\nrear is at : %c\n",q[rear]); 
+  printf("\nfront is at :  %c\n",q[front]); 
  } 
  else 
  { 
   for(i=front;i<=rear;i++) 
    printf("\t%c",q[i]); 
-  printf("\nrear is at %c\n",q[rear]); 
-  printf("\nfront is at %c\n",q[front]); 
+  printf("\nrear is at :  %c\n",q[rear]); 
+  printf("\nfront is at :  %c\n",q[front]); 
  } 
  printf("\n"); 
 } 
