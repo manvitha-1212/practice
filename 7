@@ -1,0 +1,175 @@
+#include<stdio.h> 
+#include<conio.h> 
+#include<string.h> 
+#include<stdlib.h> 
+int count=0;   
+ 
+struct node 
+{                                                                                                             
+ char name[20],branch[20],usn[20],phone[20];  
+               int sem; 
+ struct node *next;                                                                                     
+}*first=NULL,*last=NULL,*temp=NULL,*temp1=NULL; 
+ 
+void create() 
+{ 
+ int sem; 
+ char name[20],usn[10],branch[20],phone[20]; 
+ temp=(struct node *)malloc(sizeof(struct node)); 
+ printf("enter the student details : \n"); 
+ printf("\nname, usn, branch,sem,phone number :\n"); 
+              scanf("%s %s %s %d %s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+ temp->next=NULL; 
+ count++; 
+} 
+
+void deletefront() 
+{ 
+ temp=first;  
+ if(first==NULL) 
+ { 
+  printf("\n this list is empty"); 
+  return; 
+ } 
+ if(temp->next==NULL)  
+
+ { 
+  printf("The deleted node is \n"); 
+  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+  free(temp); 
+  first=NULL; 
+ } 
+ else   
+ { 
+  first=temp->next; 
+  printf("The deleted node is \n"); 
+  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+  free(temp); 
+ } 
+ count--; 
+} 
+
+
+
+
+void deleteatend() 
+{ 
+ temp=first; 
+ if(first==NULL) 
+ { 
+   printf("\n list is empty"); 
+   return; 
+ } 
+ if(temp->next==NULL)  
+
+ { 
+  printf("The deleted node is \n"); 
+  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+  free(temp); 
+  first=NULL; 
+ } 
+ else 
+ { 
+  while(temp->next!=last) 
+   temp=temp->next; 
+  printf("The deleted node is \n"); 
+  printf("%s\t%s\t%s\t%d\t%s",last->name,last->usn,last->branch,last->sem,last->phone); 
+  free(last); 
+  last=temp; 
+  last->next=NULL; 
+ } 
+ count--; 
+ 
+} 
+
+
+
+
+void insertatlast() 
+{ 
+ create(); 
+ if(first==NULL) 
+ { 
+  first=temp; 
+  last=first; 
+ } 
+ else 
+ { 
+ last->next=temp; 
+ last=temp; 
+ } 
+} 
+
+
+
+void display() 
+{ 
+ if(first==NULL)  
+ { 
+  printf("\n list is empty"); 
+ } 
+ else 
+ { 
+  temp=first;  
+  printf("The node is \n"); 
+  while(temp!=NULL) 
+  { 
+ 
+   printf("%s\t%s\t%s\t%d\t%s--->",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+   temp=temp->next; 
+   printf("\n"); 
+  } 
+ } 
+} 
+void insertatfirst() 
+{ 
+ create(); 
+ if(first==NULL) 
+ { 
+  first=temp; 
+  last=first; 
+ } 
+ else 
+ { 
+  temp->next=first; 
+  first=temp; 
+ } 
+} 
+void main() 
+{ 
+ int ch,i,n; 
+  
+ while(1) 
+ { 
+  printf("\n1.insert  details of n students :  "); 
+  printf("\n2.insert at beginning"); 
+  printf("\n3.insert at last"); 
+  printf("\n4.delete from begining"); 
+  printf("\n5.delete from last"); 
+  printf("\n6.display"); 
+  printf("\n7.exit"); 
+  printf("\nenter your choice : "); 
+  scanf("%d",&ch); 
+  switch(ch) 
+  { 
+    case 1 : printf("\nenter the value of n : "); 
+      scanf("%d",&n);   
+      for(i=0;i<n;i++)   
+          insertatfirst(); 
+      break; 
+    case 2 : insertatfirst(); 
+      break; 
+    case 3 : insertatlast(); 
+      break; 
+    case 4 : deletefront(); 
+      break; 
+    case 5 : deleteatend(); 
+      break; 
+    case 6 : display(); 
+      break; 
+    case 7 : exit(1); 
+    default: printf("\n incorrect input"); 
+  } 
+ } 
+} 
+ 
