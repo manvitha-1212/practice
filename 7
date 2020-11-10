@@ -18,7 +18,7 @@ void create()
  temp=(struct node *)malloc(sizeof(struct node)); 
  printf("enter the student details : \n"); 
  printf("\nname, usn, branch,sem,phone number :\n"); 
-              scanf("%s %s %s %d %s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+              scanf("%s %s %s %d %s",temp->name,temp->usn,temp->branch,&temp->sem,temp->phone); 
  temp->next=NULL; 
  count++; 
 } 
@@ -35,7 +35,7 @@ void deletefront()
 
  { 
   printf("The deleted node is \n"); 
-  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,&temp->sem,temp->phone); 
   free(temp); 
   first=NULL; 
  } 
@@ -43,7 +43,7 @@ void deletefront()
  { 
   first=temp->next; 
   printf("The deleted node is \n"); 
-  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,&temp->sem,temp->phone); 
   free(temp); 
  } 
  count--; 
@@ -64,7 +64,7 @@ void deleteatend()
 
  { 
   printf("The deleted node is \n"); 
-  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+  printf("%s\t%s\t%s\t%d\t%s",temp->name,temp->usn,temp->branch,&temp->sem,temp->phone); 
   free(temp); 
   first=NULL; 
  } 
@@ -73,7 +73,7 @@ void deleteatend()
   while(temp->next!=last) 
    temp=temp->next; 
   printf("The deleted node is \n"); 
-  printf("%s\t%s\t%s\t%d\t%s",last->name,last->usn,last->branch,last->sem,last->phone); 
+  printf("%s\t%s\t%s\t%d\t%s",last->name,last->usn,last->branch,&last->sem,last->phone); 
   free(last); 
   last=temp; 
   last->next=NULL; 
@@ -115,7 +115,7 @@ void display()
   while(temp!=NULL) 
   { 
  
-   printf("%s\t%s\t%s\t%d\t%s--->",temp->name,temp->usn,temp->branch,temp->sem,temp->phone); 
+   printf("%s\t%s\t%s\t%d\t%s--->",temp->name,temp->usn,temp->branch,&temp->sem,temp->phone); 
    temp=temp->next; 
    printf("\n"); 
   } 
@@ -172,4 +172,3 @@ void main()
   } 
  } 
 } 
- 
