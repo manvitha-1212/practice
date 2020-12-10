@@ -20,7 +20,7 @@ long int phno;
 char name[20],dept[20],desg[10];  
 float sal;  
 temp=(struct node *)malloc(sizeof(struct node)); 
-printf("\nEnter the employee details: ssn,name,dept,desg,sal,phno");  
+printf("\nenter the employee details: ssn,name,dept,desg,sal,phno: \n");  
 scanf("%d%s%s%s%f%ld",&ssn,name,dept,desg,&sal,&phno);  
 strcpy(temp->name,name);  
 strcpy(temp->dept,dept);  
@@ -49,7 +49,7 @@ if(first==NULL)
     } 
     else  {  
         first=temp->next;  
-        printf("\nDeleted node is:");   
+        printf("\ndeleted node : \n");   
         printf("%d\t%s\t%s\t%s\t%f\t%ld",temp->ssn,temp->name,temp->dept,temp->desg,temp->sal,temp->phno);   
         free(temp);   
         first->prev=NULL;  } 
@@ -58,10 +58,10 @@ if(first==NULL)
         void deleteatlast() 
         {  temp=first; 
         if(first==NULL)    {  
-            printf("\n DLL is empty");   
+            printf("\n dll is empty");   
             return;  }  
             if(temp->next==NULL)  
-            {   printf("\nDeleted node is:");   
+            {   printf("\ndeleted node :\n);   
             printf("%d\t%s\t%s\t%s\t%f\t%ld",temp->ssn,temp->name,temp->dept,temp->desg,temp->sal,temp->phno);   
             free(temp);   
             first=NULL;  } 
