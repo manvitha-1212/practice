@@ -1,0 +1,60 @@
+#include<stdio.h> 
+#include<stdlib.h>
+FILE *fp;              
+int  n, m,index; int *ht;
+int count = 0; 
+ 
+struct employee 
+{ 
+char name[20];
+int key,salary; }emp[20];
+  
+void insert(int key) { 
+ 
+     index = key % m;    
+     while(ht[index] != -1)    
+     {    printf("\n Collision detected for %d and is solved by linear probing",key);  
+     index = (index+1)%m;      }    
+     ht[index] = key;     
+     count++;  } 
+     void display() {    
+         int i;     if(count == 0)   
+         {  
+         printf("\nhash table is empty");     return;     }  
+         printf("\nhash table contains:\n ");   
+         for(i=0; i<m; i++)      
+         printf("\n T[%d] ------> %d ", i, ht[i]); } 
+void main() 
+{   int i;  
+printf("\nenter number of employees :   "); 
+scanf("%d", &n);  
+printf("\nenter the two digit memory locations for hash table:   ");  
+scanf("%d", &m); 
+ 
+   
+ ht = (int *)malloc(m*sizeof(int)); 
+ for(i=0; i<m; i++)     
+ ht[i] = -1; 
+ 
+           
+           fp=fopen("D:\\p1.txt","w");  
+           printf("\nenter the four digit key,name,salary values  for employee records:\n  "); 
+           for(i=0; i<n; i++)   {     
+               scanf("%d%s%d",&emp[i].key,&emp[i].name,&emp[i].salary);    
+               fprintf(fp,"%d\t%s\t%d\n",emp[i].key,emp[i].name,emp[i].salary);   }  
+               fclose(fp); 
+ 
+          
+           fp=fopen("C:\\PROGRAM1.txt","r");  
+           for(i=0;i<n;i++)  {     
+               if(count == m)    
+               {    printf("\nhash table is full and cant insert record %d key " ,i+1); 
+               break;  
+               }      fscanf(fp,"%d",&emp[i].key);      insert(emp[i].key); 
+ 
+ }      fclose(fp);        
+ display(); 
+ 
+} 
+ 
+ 
